@@ -29,7 +29,7 @@ class Quote {
         "a"."author",
         "c"."category"
         from ' . $this->table . ' as "q"
-        join "authors" as "a" on a.id = q.author_id 
+        join "authors" as "a" on a.id = q.author_id
         join "categories" as "c" on c.id = q.category_id';
 
         // Prepare statement
@@ -49,7 +49,7 @@ class Quote {
         "a"."author",
         "c"."category"
         from ' . $this->table . ' as "q"
-        join "authors" as "a" on a.id = q.author_id 
+        join "authors" as "a" on a.id = q.author_id
         join "categories" as "c" on c.id = q.category_id
         where "q"."id" = :id';
 
@@ -64,12 +64,14 @@ class Quote {
         $stmt->execute();
 
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
+        if(count($row) > 0){
+            $this->quote = $row['quote'];
+            $this->id = $row['id'];
+            $this->author = $row['author'];
+            $this->category = $row['category'];
+        }
         // Set properties
-        $this->quote = $row['quote'];
-        $this->id = $row['id'];
-        $this->author = $row['author'];
-        $this->category = $row['category'];
+
     }
 
     // Create category
@@ -77,7 +79,7 @@ class Quote {
         // Create query
         $query = 'INSERT INTO ' . $this->table . '
         ("quote", "author_id", "category_id")
-        VALUES 
+        VALUES
         (:quote, :author, :category)
         returning *
         ';
@@ -106,7 +108,7 @@ class Quote {
 
         return false;
     }
-    
+
     // Update Category
     public function update() {
 
@@ -118,7 +120,7 @@ class Quote {
             id = :id
         returning *
         ';
-        
+
         // Prepare statement
         $stmt = $this->conn->prepare($query);
 
@@ -142,8 +144,8 @@ class Quote {
                 return json_encode(array("message" => "author_id Not Found"));
             } else {
                 return json_encode($response);
-            }           
-           
+            }
+
         }
     }
 
@@ -169,11 +171,11 @@ class Quote {
                 return json_encode(array("message" => "author_id Not Found"));
             } else {
                 return json_encode(array("id" => $response["id"]));
-            }           
-           
+            }
+
         }
 
     }
-    
+
 
 }
