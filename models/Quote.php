@@ -105,8 +105,12 @@ class Quote {
                 return json_encode($stmt->fetch(PDO::FETCH_ASSOC));
             }
         } catch (PDOException $e){
-            print $e->getMessage();
-            // if(str_contains($e->getMessage(), "");
+            $message = $e->getMessage();
+            if(str_contains($message, "quotes_author_id_fkey")){
+                echo "Author issue";
+            } else if (str_contains($message, "quotes_category_id_fkey")){
+                echo "category issue";
+            }
         }
 
         return false;
