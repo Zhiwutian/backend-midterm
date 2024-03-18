@@ -107,13 +107,13 @@ class Quote {
         } catch (PDOException $e){
             $message = $e->getMessage();
             if(str_contains($message, "quotes_author_id_fkey")){
-                echo "Author issue";
+                return json_encode(array("message"=>"author_id Not Found"));
             } else if (str_contains($message, "quotes_category_id_fkey")){
-                echo "category issue";
+                return json_encode(array("message" => "category_id Not Found"));
             }
         }
 
-        return false;
+
     }
 
     // Update Category
