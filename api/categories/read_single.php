@@ -22,7 +22,7 @@ $cat_arr = array(
     'category' => $category->category
 );
 
-if($cat_arr['id'] === null){
+if($cat_arr['category'] === null){
     print_r(json_encode(array('message'=>"category_id Not Found")));
 }else {
     print_r(json_encode($cat_arr));

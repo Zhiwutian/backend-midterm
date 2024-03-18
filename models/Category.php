@@ -19,12 +19,12 @@ class Category {
     public function read(){
         // Create query
         $query = 'SELECT
-            id, 
+            id,
             category
         FROM
-            ' . $this->table . ' 
+            ' . $this->table . '
         ';
-        
+
         // Prepare statement
         $stmt = $this->conn->prepare($query);
 
@@ -38,11 +38,11 @@ class Category {
 
         // create query
         $query = 'SELECT
-            id, 
+            id,
             category
         FROM
             ' . $this->table . '
-        WHERE 
+        WHERE
             id = :id';
 
         // Prepare statement'
@@ -57,9 +57,13 @@ class Category {
 
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        // Set properties
-        $this->category = $row['category'];
-        $this->id = $row['id'];
+        if ($row) {
+            $this->category = $row['category'];
+            $this->id = $row['id'];
+            return;
+        }
+        return;
+
     }
 
     // Create category
@@ -67,7 +71,7 @@ class Category {
         // Create query
         $query = 'INSERT INTO ' . $this->table . '
         ("category")
-        VALUES 
+        VALUES
         (:category)
         returning *
         ';
@@ -92,7 +96,7 @@ class Category {
 
         return false;
     }
-    
+
     // Update Category
     public function update() {
         // Create query
@@ -103,7 +107,7 @@ class Category {
             id = :id
         returning *
         ';
-        
+
         // Prepare statement
         $stmt = $this->conn->prepare($query);
 
@@ -123,8 +127,8 @@ class Category {
                 return json_encode(array("message" => "category_id Not Found"));
             } else {
                 return json_encode($response);
-            }           
-           
+            }
+
         }
         // Print error if something goes wrong
     }
@@ -151,11 +155,11 @@ class Category {
                 return json_encode(array("message" => "category_id Not Found"));
             } else {
                 return json_encode($response);
-            }           
-           
+            }
+
         }
 
     }
-    
+
 
 }

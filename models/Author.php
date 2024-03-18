@@ -18,12 +18,12 @@ class Author {
     public function read(){
         // Create query
         $query = 'SELECT
-            id, 
+            id,
             author
         FROM
-            ' . $this->table . ' 
+            ' . $this->table . '
         ';
-        
+
         // Prepare statement
         $stmt = $this->conn->prepare($query);
 
@@ -37,11 +37,11 @@ class Author {
 
         // create query
         $query = 'SELECT
-            id, 
+            id,
             author
         FROM
             ' . $this->table . '
-        WHERE 
+        WHERE
             id = :id';
 
         // Prepare statement'
@@ -55,10 +55,11 @@ class Author {
         $stmt->execute();
 
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        // Set properties
-        $this->author = $row['author'];
-        $this->id = $row['id'];
+        if ($row) {
+            $this->author = $row['author'];
+            $this->id = $row['id'];
+            return;
+        }
     }
 
     // Create category
@@ -66,7 +67,7 @@ class Author {
         // Create query
         $query = 'INSERT INTO ' . $this->table . '
         ("author")
-        VALUES 
+        VALUES
         (:author)
         returning *
         ';
@@ -91,7 +92,7 @@ class Author {
 
         return false;
     }
-    
+
     // Update Category
     public function update() {
 
@@ -103,7 +104,7 @@ class Author {
             id = :id
         returning *
         ';
-        
+
         // Prepare statement
         $stmt = $this->conn->prepare($query);
 
@@ -122,8 +123,8 @@ class Author {
                 return json_encode(array("message" => "author_id Not Found"));
             } else {
                 return json_encode($response);
-            }           
-           
+            }
+
         }
         // Print error if something goes wrong
     }
@@ -150,11 +151,11 @@ class Author {
                 return json_encode(array("message" => "author_id Not Found"));
             } else {
                 return json_encode($response);
-            }           
-           
+            }
+
         }
 
     }
-    
+
 
 }
