@@ -9,11 +9,11 @@ class Database {
     private $conn;
 
     public function __construct() {
-        $this->username = getenv("USERNAME");
-        $this->password = getenv("PASSWORD");
+        $this->username = getenv("DBUSERNAME");
+        $this->password = getenv("DBPASSWORD");
         $this->db_name = getenv('DBNAME');
-        $this->host = getenv('HOST');
-        $this->port = getenv('PORT'); 
+        $this->host = getenv('DBHOST');
+        $this->port = getenv('DBPORT');
     }
     // DB Connect
     public function connect(){
@@ -22,7 +22,7 @@ class Database {
             return $this->conn;
         } else {
 
-       
+
         $dsn = "pgsql:host={$this->host};port={$this->port};dbname={$this->db_name};sslcert=blank;";
 
         try {
@@ -33,7 +33,7 @@ class Database {
             // echo for tutorial, but log the error for production
             echo 'Connection Error: ' . $e->getMessage();
         }
-        
+
       }
     }
 }
