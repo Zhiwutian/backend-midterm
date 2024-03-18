@@ -148,7 +148,7 @@ class Quote {
         try{
             if ($stmt->execute()) {
                 $response = $stmt->fetch(PDO::FETCH_ASSOC);
-                return $response;
+                return json_encode($response);
             }
             } catch (PDOException $e){
             $message = $e->getMessage();
