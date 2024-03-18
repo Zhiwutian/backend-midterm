@@ -145,15 +145,22 @@ class Quote {
         $stmt->bindParam(':author', $this->author);
         $stmt->bindParam(':category', $this->category);
         // Execute query
-        if($stmt->execute()){
-            $response = $stmt->fetch(PDO::FETCH_ASSOC);
-            if(!$response){
-                return json_encode(array("message" => "author_id Not Found"));
-            } else {
-                return json_encode($response);
+        try{
+            if ($stmt->execute()) {
+                $response = $stmt->fetch(PDO::FETCH_ASSOC);
+                return $response;
             }
+            } catch (PDOException $e){
+            $message = $e->getMessage();
+            if (str_contains($message, "quotes_author_id_fkey")) {
+                return json_encode(array("message" => "author_id Not Found"));
+            } else if (str_contains($message, "quotes_category_id_fkey")) {
+                return json_encode(array("message" => "category_id Not Found"));
+            }
+            }
+            return json_encode(array("message"=>"No Quotes Found"));
 
-        }
+
     }
 
     // Delete Post
