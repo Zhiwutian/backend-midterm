@@ -148,6 +148,9 @@ class Quote {
         try{
             if ($stmt->execute()) {
                 $response = $stmt->fetch(PDO::FETCH_ASSOC);
+                if(!$response){
+                    return json_encode(array("message"=>"No Quotes Found"));
+                }
                 return json_encode($response);
             }
             } catch (PDOException $e){
@@ -158,7 +161,6 @@ class Quote {
                 return json_encode(array("message" => "category_id Not Found"));
             }
             }
-            return json_encode(array("message"=>"No Quotes Found"));
 
 
     }

@@ -13,9 +13,8 @@ $author = new Author($db);
 // Get raw posted data
 $data = json_decode(file_get_contents("php://input"));
 
-$categoryCheck = $data->author;
 
-if(!$categoryCheck){
+if(!isset($data->author)){
     echo json_encode(
         array("message"=>"Missing Required Parameters")
     );
