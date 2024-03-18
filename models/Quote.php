@@ -64,7 +64,7 @@ class Quote {
         $stmt->execute();
 
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        echo $row
+        echo $row;
         // if(count($row) > 0){
         //     $this->quote = $row['quote'];
         //     $this->id = $row['id'];
