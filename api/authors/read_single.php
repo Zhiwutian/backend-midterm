@@ -23,7 +23,7 @@ $aut_arr = array(
 );
 
 if($aut_arr['author'] === null){
-    print_r(json_encode(array('message'=>"category_id Not Found")));
+    print_r(json_encode(array('message'=>"author_id Not Found")));
 }else {
     print_r(json_encode($aut_arr));
 };

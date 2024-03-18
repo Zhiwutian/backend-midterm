@@ -100,9 +100,14 @@ class Quote {
 
 
         // Execute query
-        if($stmt->execute()){
-           return json_encode($stmt->fetch(PDO::FETCH_ASSOC));
+        try{
+            if ($stmt->execute()) {
+                return json_encode($stmt->fetch(PDO::FETCH_ASSOC));
+            }
+        } catch (PDOException $e){
+            print "SQL Error " . $e->getMessage();
         }
+
 
         // Print error if something goes wrong
         printf("Error: %s.\n", $stmt->error);
