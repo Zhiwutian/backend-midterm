@@ -105,7 +105,8 @@ class Quote {
                 return json_encode($stmt->fetch(PDO::FETCH_ASSOC));
             }
         } catch (PDOException $e){
-            print "SQL Error " . $e->getCode();
+            print $e->getMessage();
+            // if(str_contains($e->getMessage(), "");
         }
 
         return false;
