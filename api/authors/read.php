@@ -1,7 +1,4 @@
 <?php
-//Headers
-header('Access-Control-Allow-Origin: *');
-header('Content-Type: application/json');
 
 include_once '../../config/Database.php';
 include_once '../../models/Author.php';
@@ -24,7 +21,7 @@ if ($num > 0){
 
     while($row = $result->fetch(PDO::FETCH_ASSOC)){
        extract($row);
-       
+
        $aut_item = array(
         'id' => $id,
         'author' => $author

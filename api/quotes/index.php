@@ -10,12 +10,9 @@
     }
 
 
-$categoryId = htmlspecialchars($_GET["category_id"]);
-$authorId = htmlspecialchars($_GET["author_id"]);
 
 if($method === "GET"){
-    $id = htmlspecialchars($_GET["id"]);
-    if($id){
+    if (isset($_GET["id"])) {
         include_once './read_single.php';
         return;
     }
@@ -28,4 +25,3 @@ if($method === "GET"){
 } else if ($method === "DELETE"){
     include_once './delete.php';
 }
-    

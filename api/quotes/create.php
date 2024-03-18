@@ -1,9 +1,4 @@
 <?php
-//Headers
-header('Access-Control-Allow-Origin: *');
-header('Content-Type: application/json');
-header('Access-Control-Allow-Methods: POST');
-header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type,Access-Control-Allow-Methods,Authorization, X-Requested-With');
 
 include_once '../../config/Database.php';
 include_once '../../models/Quote.php';
@@ -30,4 +25,3 @@ $quote->quote = $data->quote;
 // Create post and send to client
 $response = $quote->create();
 echo $response;
-

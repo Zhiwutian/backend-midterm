@@ -10,8 +10,7 @@
     }
 
     if($method === "GET"){
-        $id = htmlspecialchars($_GET["id"]);
-        if($id){
+        if( isset($_GET["id"])){
             include_once './read_single.php';
             return;
         }
@@ -24,4 +23,3 @@
     } else if ($method === "DELETE"){
         include_once './delete.php';
     }
-        
