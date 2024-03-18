@@ -64,12 +64,13 @@ class Quote {
         $stmt->execute();
 
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        if(count($row) > 0){
-            $this->quote = $row['quote'];
-            $this->id = $row['id'];
-            $this->author = $row['author'];
-            $this->category = $row['category'];
-        }
+        echo $row
+        // if(count($row) > 0){
+        //     $this->quote = $row['quote'];
+        //     $this->id = $row['id'];
+        //     $this->author = $row['author'];
+        //     $this->category = $row['category'];
+        // }
         // Set properties
 
     }
