@@ -12,7 +12,7 @@ $quote = new Quote($db);
 // Get raw posted data
 $data = json_decode(file_get_contents("php://input"));
 
-if(!$data->category_id || !$data->author_id || !$data->quote){
+if(!isset($data->category_id) || !isset($data->author_id) || !isset($data->quote)){
     echo json_encode(
         array("message"=>"Missing Required Parameters")
     );
