@@ -23,7 +23,7 @@ class Database {
         } else {
 
 
-        $dsn = "pgsql:host={$this->host};port={$this->port};dbname={$this->db_name};sslcert=blank;";
+        $dsn = "pgsql:host={$this->host};dbname={$this->db_name};sslcert=blank;";
 
         try {
             $this->conn = new PDO($dsn, $this->username, $this->password);
