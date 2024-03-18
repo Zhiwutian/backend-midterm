@@ -12,7 +12,7 @@ $category = new Category($db);
 
 // Get raw posted data
 $data = json_decode(file_get_contents("php://input"));
-if(!$data->category){
+if(!isset($data->category)){
     echo json_encode(
         array("message"=>"Missing Required Parameters")
     );
