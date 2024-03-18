@@ -1,7 +1,4 @@
 <?php
-//Headers
-header('Access-Control-Allow-Origin: *');
-header('Content-Type: application/json');
 
 include_once '../../config/Database.php';
 include_once '../../models/Category.php';
@@ -24,7 +21,7 @@ if ($num > 0){
 
     while($row = $result->fetch(PDO::FETCH_ASSOC)){
        extract($row);
-       
+
        $cat_item = array(
         'id' => $id,
         'category' => $category

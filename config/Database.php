@@ -2,7 +2,6 @@
 class Database {
     //DB Params
     private $host;
-    private $port;
     private $db_name;
     private $username;
     private $password;
@@ -13,7 +12,6 @@ class Database {
         $this->password = getenv("DBPASSWORD");
         $this->db_name = getenv('DBNAME');
         $this->host = getenv('DBHOST');
-        $this->port = getenv('DBPORT');
     }
     // DB Connect
     public function connect(){
