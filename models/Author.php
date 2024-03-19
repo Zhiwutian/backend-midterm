@@ -122,7 +122,7 @@ class Author {
             if(!$response){
                 return json_encode(array("message" => "author_id Not Found"));
             } else {
-                return json_encode(array("id" => $response["id"]));
+                return json_encode($response);
             }
 
         }
@@ -150,7 +150,7 @@ class Author {
             if(!$response){
                 return json_encode(array("message" => "author_id Not Found"));
             } else {
-                return json_encode($response);
+                return json_encode(array("id" => $response["id"]));
             }
 
         }
