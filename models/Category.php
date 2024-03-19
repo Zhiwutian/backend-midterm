@@ -154,7 +154,7 @@ class Category {
             if(!$response){
                 return json_encode(array("message" => "category_id Not Found"));
             } else {
-                return json_encode($response);
+                return json_encode(array("id" => $response["id"]));
             }
 
         }
